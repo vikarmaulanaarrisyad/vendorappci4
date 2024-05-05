@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.svg') ?> " type="image/x-icon" />
-    <title>Blank Page | PlainAdmin Demo</title>
+    <title><?= $title ?></title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?> " />
@@ -74,7 +74,7 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a href="invoice.html">
+                    <a href="<?= base_url('logout') ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-logout">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
@@ -118,8 +118,8 @@
                                                 <img src="<?= base_url('assets/images/profile/profile-image.png') ?> " alt="" />
                                             </div>
                                             <div>
-                                                <h6 class="fw-500">Adam Joe</h6>
-                                                <p>Admin</p>
+                                                <h6 class="fw-500"><?= session()->get('username') ?></h6>
+                                                <p><?= session()->get('email') ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -131,31 +131,14 @@
                                                 <img src="<?= base_url('assets/images/profile/profile-image.png') ?> " alt="image">
                                             </div>
                                             <div class="content">
-                                                <h4 class="text-sm">Adam Joe</h4>
+                                                <h4 class="text-sm"><?= session()->get('username') ?></h4>
                                                 <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#">Email@gmail.com</a>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="#0">
-                                            <i class="lni lni-user"></i> View Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#0">
-                                            <i class="lni lni-alarm"></i> Notifications
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#0"> <i class="lni lni-inbox"></i> Messages </a>
-                                    </li>
-                                    <li>
-                                        <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#0"> <i class="lni lni-exit"></i> Sign Out </a>
+                                        <a href="<?= base_url('logout') ?>"> <i class="lni lni-exit"></i> Sign Out </a>
                                     </li>
                                 </ul>
                             </div>
@@ -175,7 +158,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <div class="title">
-                                <h2>Title</h2>
+                                <h2><?= $title ?></h2>
                             </div>
                         </div>
                         <!-- end col -->

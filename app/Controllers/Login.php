@@ -44,9 +44,13 @@ class Login extends BaseController
                 $cekPassword = password_verify($password, $cekUsername['password']);
                 if ($cekPassword) {
                     // password benar
-                    $session->set('logged_in', true);
-                    $session->set('username', $cekUsername['username']);
-                    $session->set('email', $cekUsername['email']);
+                    $session_data = [
+                        'logged_in' => true,
+                        'username' => $cekUsername['username'],
+                    ];
+
+                    $session->set($session_data);
+
                     return redirect()->to('/dashboard');
                 } else {
                     // 
@@ -59,5 +63,12 @@ class Login extends BaseController
                 return redirect()->to('/');
             }
         }
+    }
+
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return redirect()->to('/');
     }
 }

@@ -7,4 +7,6 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Login::index');
 $routes->post('/login', 'Login::login_action');
-$routes->get('/dashboard', 'Dashboard::index');
+$routes->get('/logout', 'Login::logout');
+
+$routes->get('/dashboard', 'Dashboard::index', ['filter' => 'dashboardFilter']);
