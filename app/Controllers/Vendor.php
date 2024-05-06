@@ -132,4 +132,66 @@ class Vendor extends BaseController
 
         echo json_encode($msg);
     }
+
+    public function formedit()
+    {
+        if (!$this->request->isAJAX()) {
+            # code...
+        } else {
+            // ambil dari request formedit
+            $idVendor = $this->request->getVar('id');
+
+            $vendor = new VendorModel();
+            $result = $vendor->find($idVendor);
+
+            $data = [
+                'id' => $result['id'],
+                'kode_vendor' => $result['kode_vendor'],
+                'nama_vendor' => $result['nama_vendor'],
+                'deskripsi' => $result['deskripsi'],
+                'alamat' => $result['alamat'],
+                'provinsi' => $result['provinsi'],
+                'kota' => $result['kota'],
+            ];
+
+            $msg = [
+                'sukses' => view('vendor/modaledit', $data),
+            ];
+
+            echo json_encode($msg);
+        }
+    }
+
+    public function updatedata()
+    {
+        // Pastikan request adalah AJAX
+        if (!$this->request->isAJAX()) {
+            exit('Maaf tidak dapat menampilkan data');
+        }
+
+        // Ambil data dari request
+        $updateData = [
+            'nama_vendor' => $this->request->getVar('nama_vendor'),
+            'deskripsi' => $this->request->getVar('deskripsi'),
+            'alamat' => $this->request->getVar('alamat'),
+            'provinsi' => $this->request->getVar('provinsi'),
+            'kota' => $this->request->getVar('kota'),
+        ];
+
+        // Buat objek model VendorModel
+        $vendorModel = new VendorModel();
+
+        // Ambil ID vendor dari request
+        $id = $this->request->getVar('id');
+
+        // Lakukan update data menggunakan model VendorModel
+        $vendorModel->update($id, $updateData);
+
+        // Kirim respon JSON
+        $msg = [
+            'sukses' => 'Data vendor berhasil diupdate'
+        ];
+
+        echo json_encode($msg);
+    }
 }
