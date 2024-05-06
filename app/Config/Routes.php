@@ -17,3 +17,4 @@ $routes->post('/vendor/formedit', 'Vendor::formedit', ['filter' => 'dashboardFil
 $routes->post('/vendor/updatedata', 'Vendor::updatedata', ['filter' => 'dashboardFilter']);
 $routes->post('/vendor/hapus', 'Vendor::hapus', ['filter' => 'dashboardFilter']);
 $routes->post('/vendor/simpandata', 'Vendor::simpandata', ['filter' => 'dashboardFilter']);
+$routes->post('/vendor/kabupaten', 'Vendor::kabupaten', ['filter' => 'dashboardFilter']);

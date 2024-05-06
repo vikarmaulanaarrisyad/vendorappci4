@@ -3,8 +3,11 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\KabupatenModel;
+use App\Models\ProvinsiModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\VendorModel;
+use App\Models\WilayahModel;
 
 class Vendor extends BaseController
 {
@@ -12,6 +15,7 @@ class Vendor extends BaseController
     {
         $data = [
             'title' => 'Data Vendor',
+
         ];
 
         return view('vendor/index', $data);
@@ -23,7 +27,24 @@ class Vendor extends BaseController
             exit('Maaf tidak dapat menampilkan data');
         } else {
             $vendor = new VendorModel();
+            $data = [
+                'tampildata' => $vendor->getAll(),
+            ];
 
+            $msg = [
+                'data' => view('vendor/listdata', $data),
+            ];
+
+            echo json_encode($msg);
+        }
+    }
+
+    public function ambildata1()
+    {
+        if (!$this->request->isAJAX()) {
+            exit('Maaf tidak dapat menampilkan data');
+        } else {
+            $vendor = new VendorModel();
             $data = [
                 'tampildata' => $vendor->findAll(),
             ];
@@ -36,13 +57,19 @@ class Vendor extends BaseController
         }
     }
 
+
+
     public function formtambah()
     {
         if (!$this->request->isAJAX()) {
             exit('Maaf tidak dapat menampilkan data');
         } else {
+            $wilayah = new WilayahModel();
+            $data = [
+                'provinsi' => $wilayah->AllProvinsi(),
+            ];
             $msg = [
-                'data' => view('vendor/modaltambah'),
+                'data' => view('vendor/modaltambah', $data),
             ];
         }
         echo json_encode($msg);
@@ -84,14 +111,14 @@ class Vendor extends BaseController
                         'required' => '{field} harus diisi',
                     ]
                 ],
-                'provinsi' => [
+                'id_provinsi' => [
                     'label' => 'Provinsi',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} harus diisi',
                     ]
                 ],
-                'kota' => [
+                'id_kabupaten' => [
                     'label' => 'Kota',
                     'rules' => 'required',
                     'errors' => [
@@ -108,8 +135,8 @@ class Vendor extends BaseController
                     'nama_vendor' => $validation->getError('nama_vendor'),
                     'deskripsi' => $validation->getError('deskripsi'),
                     'alamat' => $validation->getError('alamat'),
-                    'provinsi' => $validation->getError('provinsi'),
-                    'kota' => $validation->getError('kota'),
+                    'id_provinsi' => $validation->getError('id_provinsi'),
+                    'id_kabupaten' => $validation->getError('id_kabupaten'),
                 ]
             ];
         } else {
@@ -118,8 +145,8 @@ class Vendor extends BaseController
                 'nama_vendor' => $this->request->getPost('nama_vendor'),
                 'deskripsi' => $this->request->getPost('deskripsi'),
                 'alamat' => $this->request->getPost('alamat'),
-                'provinsi' => $this->request->getPost('provinsi'),
-                'kota' => $this->request->getPost('kota'),
+                'id_provinsi' => $this->request->getPost('id_provinsi'),
+                'id_kabupaten' => $this->request->getPost('id_kabupaten'),
             ];
 
             $vendorModel = new VendorModel();
@@ -150,10 +177,9 @@ class Vendor extends BaseController
                 'nama_vendor' => $result['nama_vendor'],
                 'deskripsi' => $result['deskripsi'],
                 'alamat' => $result['alamat'],
-                'provinsi' => $result['provinsi'],
-                'kota' => $result['kota'],
+                'id_provinsi' => $result['id_provinsi'],
+                'id_kabupaten' => $result['id_kabupaten'],
             ];
-
             $msg = [
                 'sukses' => view('vendor/modaledit', $data),
             ];
@@ -211,5 +237,24 @@ class Vendor extends BaseController
 
             echo json_encode($msg);
         }
+    }
+
+
+    public function kabupaten()
+    {
+        $wilayahModel = new WilayahModel(); // Create an instance of the model
+        $id_provinsi = $this->request->getPost('id_provinsi');
+        $kab = $wilayahModel->AllKabupaten($id_provinsi); // Use the model method
+
+        $options = [];
+        foreach ($kab as $value) {
+            $options[] = [
+                'id' => $value['id_kabupaten'],
+                'nama' => $value['nama_kabupaten'],
+            ];
+        }
+
+        // Set JSON response
+        return $this->response->setJSON(['data' => $options]);
     }
 }

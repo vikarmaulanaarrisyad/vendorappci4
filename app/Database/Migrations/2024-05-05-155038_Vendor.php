@@ -32,14 +32,17 @@ class Vendor extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 255,
             ],
-            'provinsi' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
+            'id_provinsi' => [
+                'type' => 'INT', // Ganti tipe data menjadi INT
+                'constraint' => 11, // Ubah constraint menjadi 11
+                'unsigned' => true, // Tambahkan unsigned
             ],
-            'kota' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
+            'id_kabupaten' => [
+                'type' => 'INT', // Ganti tipe data menjadi INT
+                'constraint' => 11, // Ubah constraint menjadi 11
+                'unsigned' => true, // Tambahkan unsigned
             ],
+
         ]);
         $this->forge->addKey('id', true);
         $this->forge->createTable('vendor');
