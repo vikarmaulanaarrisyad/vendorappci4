@@ -11,7 +11,7 @@ class UserSeeder extends Seeder
         $data = [
             'username' => 'admin',
             'email'    => 'admin@codeigniter.com',
-            'password' => '$2y$10$3ZGb5brlrV938ZSJOrlxEud/cdRcvL5tmVi7OHCK74X3K1zwhQ1Ja',
+            'password' => '$2y$10$3ZGb5brlrV938ZSJOrlxEud/cdRcvL5tmVi7OHCK74X3K1zwhQ1Ja', // 12345
         ];
 
         // Simple Queries
