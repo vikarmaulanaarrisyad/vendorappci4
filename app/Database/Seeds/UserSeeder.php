@@ -11,11 +11,11 @@ class UserSeeder extends Seeder
         $data = [
             'username' => 'admin',
             'email'    => 'admin@codeigniter.com',
-            'password' => 'admin',
+            'password' => '$2y$10$3ZGb5brlrV938ZSJOrlxEud/cdRcvL5tmVi7OHCK74X3K1zwhQ1Ja',
         ];
 
         // Simple Queries
-        $this->db->query('INSERT INTO users (username, email) VALUES(:username:, :email:)', $data);
+        $this->db->query('INSERT INTO users (username, email,password) VALUES(:username:, :email:, :password:)', $data);
 
         // Using Query Builder
         $this->db->table('users')->insert($data);

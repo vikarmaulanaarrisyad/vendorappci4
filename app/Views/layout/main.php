@@ -15,7 +15,11 @@
     <link href="<?= base_url('/templates/assets/css/bootstrap.min.css') ?> " rel="stylesheet" type="text/css">
     <link href="<?= base_url('/templates/assets/css/icons.css') ?> " rel="stylesheet" type="text/css">
     <link href="<?= base_url('/templates/assets/css/style.css') ?> " rel="stylesheet" type="text/css">
-    <script src="<?= base_url('/templates/assets/js/jquery.min.js') ?> "></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script script src="<?= base_url('/templates/assets/js/jquery.min.js') ?> "></script>
+
 </head>
 
 

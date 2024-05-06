@@ -11,3 +11,6 @@ $routes->get('/logout', 'Login::logout');
 
 $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'dashboardFilter']);
 $routes->get('/vendor', 'Vendor::index', ['filter' => 'dashboardFilter']);
+$routes->get('/vendor/ambildata', 'Vendor::ambildata', ['filter' => 'dashboardFilter']);
+$routes->get('/vendor/formtambah', 'Vendor::formtambah', ['filter' => 'dashboardFilter']);
+$routes->post('/vendor/simpandata', 'Vendor::simpandata', ['filter' => 'dashboardFilter']);
