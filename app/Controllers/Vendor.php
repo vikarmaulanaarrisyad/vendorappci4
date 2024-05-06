@@ -194,4 +194,22 @@ class Vendor extends BaseController
 
         echo json_encode($msg);
     }
+
+    public function hapus()
+    {
+        if ($this->request->isAJAX()) {
+            $id = $this->request->getVar('id');
+
+            $vendor = new VendorModel();
+
+            $vendor->delete($id);
+
+            // Kirim respon JSON
+            $msg = [
+                'sukses' => 'Data vendor berhasil dihapus'
+            ];
+
+            echo json_encode($msg);
+        }
+    }
 }

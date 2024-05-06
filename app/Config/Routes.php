@@ -15,4 +15,5 @@ $routes->get('/vendor/ambildata', 'Vendor::ambildata', ['filter' => 'dashboardFi
 $routes->get('/vendor/formtambah', 'Vendor::formtambah', ['filter' => 'dashboardFilter']);
 $routes->post('/vendor/formedit', 'Vendor::formedit', ['filter' => 'dashboardFilter']);
 $routes->post('/vendor/updatedata', 'Vendor::updatedata', ['filter' => 'dashboardFilter']);
+$routes->post('/vendor/hapus', 'Vendor::hapus', ['filter' => 'dashboardFilter']);
 $routes->post('/vendor/simpandata', 'Vendor::simpandata', ['filter' => 'dashboardFilter']);
