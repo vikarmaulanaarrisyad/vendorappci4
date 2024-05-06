@@ -39,26 +39,6 @@ class Vendor extends BaseController
         }
     }
 
-    public function ambildata1()
-    {
-        if (!$this->request->isAJAX()) {
-            exit('Maaf tidak dapat menampilkan data');
-        } else {
-            $vendor = new VendorModel();
-            $data = [
-                'tampildata' => $vendor->findAll(),
-            ];
-
-            $msg = [
-                'data' => view('vendor/listdata', $data),
-            ];
-
-            echo json_encode($msg);
-        }
-    }
-
-
-
     public function formtambah()
     {
         if (!$this->request->isAJAX()) {
@@ -171,6 +151,9 @@ class Vendor extends BaseController
             $vendor = new VendorModel();
             $result = $vendor->find($idVendor);
 
+            $wilayah = new WilayahModel();
+
+
             $data = [
                 'id' => $result['id'],
                 'kode_vendor' => $result['kode_vendor'],
@@ -179,6 +162,7 @@ class Vendor extends BaseController
                 'alamat' => $result['alamat'],
                 'id_provinsi' => $result['id_provinsi'],
                 'id_kabupaten' => $result['id_kabupaten'],
+                'provinsi' => $wilayah->AllProvinsi(),
             ];
             $msg = [
                 'sukses' => view('vendor/modaledit', $data),
@@ -200,8 +184,8 @@ class Vendor extends BaseController
             'nama_vendor' => $this->request->getVar('nama_vendor'),
             'deskripsi' => $this->request->getVar('deskripsi'),
             'alamat' => $this->request->getVar('alamat'),
-            'provinsi' => $this->request->getVar('provinsi'),
-            'kota' => $this->request->getVar('kota'),
+            'id_provinsi' => $this->request->getVar('id_provinsi'),
+            'id_kabupaten' => $this->request->getVar('id_kabupaten'),
         ];
 
         // Buat objek model VendorModel
